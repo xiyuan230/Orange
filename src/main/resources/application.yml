@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: E:\\Documents\\tmp\\
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/orange?serverTimezone=GMT%2B8&useSSL=true
+    username: root
+    password: Sql123..
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xiyuan.orange.Mapper
+appid: wx48850d16eaf59a00
+app-secret: dab7e2b3e3d4952fd5fc2521ed0535cc
