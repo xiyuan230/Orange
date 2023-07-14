@@ -24,4 +24,11 @@ public interface UserMapper {
     List<UserModel> getUserList(int start,int end);
     @Update("update users set status = #{status} where openid = #{openid}")
     int updateUserStatus();
+
+    @Select("select count(*) from user_relation where friend_openid = #{openid} or user_openid = #{openid}")
+    int getUserFriendCount(String openid);
+    @Select("select count(*) from moments where poster_openid = #{openid};")
+    int getUserMomentCount(String openid);
+    @Select("select count(*) from product_order p_o join products p on p.product_id = p_o.product_id where p.seller_id = #{openid}")
+    int getUserProductOrderCount(String openid);
 }

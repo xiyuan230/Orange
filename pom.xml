@@ -105,7 +105,6 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.xiyuan.orange.OrangeApplication</mainClass>
-                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -118,5 +117,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

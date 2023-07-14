@@ -18,7 +18,8 @@ import java.util.UUID;
 public class UploadService {
     @Value("${spring.resources.static-locations}")
     private String FILE_PATH;
-    private String RESOURCE_URL = "http://192.168.31.190:8080/static/";
+    @Value("${server-local}")
+    private String RESOURCE_URL;
     public String uploadFile(MultipartFile uploadFile) {
         String fileName = uploadFile.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
@@ -26,7 +27,7 @@ public class UploadService {
         String currentDate = DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now());
 
         try {
-            File file = new File(FILE_PATH + currentDate + "\\\\" + fileName);
+            File file = new File(FILE_PATH + currentDate + "/" + fileName);
             file.getParentFile().mkdir();
             if (!file.exists()) {
                 file.createNewFile();

@@ -25,6 +25,21 @@ public class MomentService {
         }
         return momentList;
     }
+
+    public List<MomentModel> getMomentListByOpenid(String openid) {
+        List<MomentModel> list = momentMapper.getMomentListByOpenid(openid);
+        return list;
+    }
+    public boolean deleteMomentByID(int moment_id,String openid) {
+        MomentModel momentByID = momentMapper.getMomentByID(moment_id);
+        if(!momentByID.getPoster_openid().equals(openid)) {
+            return false;
+        }
+        if(momentMapper.deleteMomentByID(moment_id) < 1) {
+            return false;
+        }
+        return true;
+    }
     public MomentModel getMomentByID(int id) {
         MomentModel moment = momentMapper.getMomentByID(id);
         List<ImageModel> images = momentImagesMapper.getMomentImagesByMomentID(id);
