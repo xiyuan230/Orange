@@ -34,4 +34,6 @@ public interface FellowMapper {
     int deleteApply(int apply_id);
     @Delete("DELETE FROM user_apply WHERE user_openid = #{user_openid} AND target_openid = #{target_openid}")
     int deleteApplyByOpenid(@Param("user_openid") String user_openid,@Param("target_openid") String target_openid );
+    @Select("SELECT count(*) FROM user_relation WHERE (user_openid = #{user_openid} AND friend_openid = #{friend_openid}) OR (user_openid = #{friend_openid} AND friend_openid = #{user_openid})")
+    int queryRelationCount(@Param("user_openid") String user_openid,@Param("friend_openid") String friend_openid);
 }

@@ -21,6 +21,9 @@ public class FellowService {
         if (fellowMapper.getApplyByOpenid(apply) == null) {
             return fellowMapper.createUserApply(apply)>0;
         }
+        if (fellowMapper.queryRelationCount(apply.getUser_openid(),apply.getTarget_openid()) == 0){
+            return true;
+        }
         return false;
     }
 

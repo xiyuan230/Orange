@@ -66,4 +66,15 @@ public class UserService {
         int row = userMapper.updateUser(userModel);
         return row > 0;
     }
+
+    public Map<String,Integer> getUserInfoCount(String openid) {
+        Map<String,Integer> map = new HashMap<>();
+        int friend = userMapper.getUserFriendCount(openid);
+        int moment = userMapper.getUserMomentCount(openid);
+        int order = userMapper.getUserProductOrderCount(openid);
+        map.put("friend_count",friend);
+        map.put("moment_count",moment);
+        map.put("order_count",order);
+        return map;
+    }
 }

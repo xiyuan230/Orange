@@ -35,4 +35,18 @@ public class MomentController {
         }
         return R.error("发布失败");
     }
+    @GetMapping("/moment/publish")
+    public R getMomentListByOpenid(HttpServletRequest req) {
+        String openid = JWTUtils.getOpenid(req.getHeader("Authorization"));
+        List<MomentModel> list = momentService.getMomentListByOpenid(openid);
+        return R.success(list).setMsg("获取动态列表成功");
+    }
+    @DeleteMapping("/moment/publish/{moment_id}")
+    public R deleteMomentByID(@PathVariable int moment_id,HttpServletRequest req){
+        String openid = JWTUtils.getOpenid(req.getHeader("Authorization"));
+        if (!momentService.deleteMomentByID(moment_id,openid)) {
+            return R.error("删除失败");
+        }
+        return R.success().setMsg("删除成功");
+    }
 }

@@ -67,4 +67,10 @@ public class UserController {
         String token = JWTUtils.getToken(payload);
         return token;
     }
+    @GetMapping("/user/count")
+    public R getUserInfCount(HttpServletRequest req) {
+        String openid = JWTUtils.getOpenid(req.getHeader("Authorization"));
+        Map<String, Integer> userInfoCount = userService.getUserInfoCount(openid);
+        return R.success(userInfoCount).setMsg("获取用户信息成功");
+    }
 }
