@@ -25,7 +25,14 @@ public class MomentService {
         }
         return momentList;
     }
-
+    public List<MomentModel> getMomentListBySearch(int page,int size,String query){
+        List<MomentModel> momentList = momentMapper.getMomentListBySearch((page - 1) * size, size,query);
+        for (MomentModel moment: momentList) {
+            List<ImageModel> momentImagesByMomentID = momentImagesMapper.getMomentImagesByMomentID(moment.getMoment_id());
+            moment.setImage_list(momentImagesByMomentID);
+        }
+        return momentList;
+    }
     public List<MomentModel> getMomentListByOpenid(String openid) {
         List<MomentModel> list = momentMapper.getMomentListByOpenid(openid);
         return list;

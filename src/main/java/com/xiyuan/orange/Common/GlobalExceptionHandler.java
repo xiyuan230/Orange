@@ -35,4 +35,9 @@ public class GlobalExceptionHandler {
         log.info(e.getMessage());
         return R.error("身份信息失效").setCode(401);
     }
+    @ExceptionHandler(NotCreatedUserDetailException.class)
+    public R NotCreatedUserDetailExceptionHander(NotCreatedUserDetailException e) {
+        log.info(e.getMessage());
+        return R.error("请先完善详细信息").setCode(402);
+    }
 }

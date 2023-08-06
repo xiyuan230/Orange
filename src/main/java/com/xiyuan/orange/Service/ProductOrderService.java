@@ -34,8 +34,14 @@ public class ProductOrderService {
     public R getProductOrderList(String openid) {
         return R.success(productOrderMapper.getProductOrderList(openid)).setMsg("获取订单列表成功");
     }
+    public R getPluralistOrderList(String openid) {
+        return R.success(productOrderMapper.getPluralistOrderList(openid)).setMsg("获取订单列表成功");
+    }
     public R getProductApplyList(String openid) {
         return R.success(productOrderMapper.getProductApplyList(openid)).setMsg("获取申请列表成功");
+    }
+    public R getPluralistApplyList(String openid) {
+        return R.success(productOrderMapper.getPluralistApplyList(openid)).setMsg("获取申请列表成功");
     }
     public R accessProductOrder(String openid,int product_id) {
         ProductModel productModel = productMapper.getProductByProductID(product_id);

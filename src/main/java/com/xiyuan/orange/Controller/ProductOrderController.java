@@ -26,10 +26,20 @@ public class ProductOrderController {
         String openid = JWTUtils.getOpenid(req.getHeader("Authorization"));
         return productOrderService.getProductOrderList(openid);
     }
+    @GetMapping("/pluralist/order")
+    public R getPluralistOrderList(HttpServletRequest req) {
+        String openid = JWTUtils.getOpenid(req.getHeader("Authorization"));
+        return productOrderService.getPluralistOrderList(openid);
+    }
     @GetMapping("/product/apply")
     public R getProductApplyList(HttpServletRequest req) {
         String openid = JWTUtils.getOpenid(req.getHeader("Authorization"));
         return productOrderService.getProductApplyList(openid);
+    }
+    @GetMapping("/pluralist/apply")
+    public R getPluralistApplyList(HttpServletRequest req) {
+        String openid = JWTUtils.getOpenid(req.getHeader("Authorization"));
+        return productOrderService.getPluralistApplyList(openid);
     }
     @PutMapping("/product/apply/{product_id}")
     public R accessProductOrder(HttpServletRequest req, @PathVariable int product_id) {

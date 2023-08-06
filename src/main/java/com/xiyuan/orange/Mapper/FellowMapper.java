@@ -18,7 +18,7 @@ public interface FellowMapper {
     UserApplyModel getApplyByOpenid(UserApplyModel apply);
     @Select("SELECT * FROM user_apply WHERE apply_id = #{apply_id}")
     UserApplyModel getApplyByID(int apply_id);
-    @Select("SELECT COUNT(IF(province = (SELECT province FROM user_detail WHERE openid = #{openid}),1,NULL)) as province, COUNT(IF(city = (SELECT city FROM user_detail WHERE openid = #{openid}),1,NULL)) as city, COUNT(IF(district = (SELECT district FROM user_detail WHERE openid = #{openid}),1,NULL)) as district FROM user_detail")
+    @Select("SELECT COUNT(IF(province = (SELECT province FROM user_detail WHERE openid = #{openid}),1,NULL)) -1 as province, COUNT(IF(city = (SELECT city FROM user_detail WHERE openid = #{openid}),1,NULL)) -1 as city, COUNT(IF(district = (SELECT district FROM user_detail WHERE openid = #{openid}),1,NULL)) -1 as district FROM user_detail")
     Map<String,String> getFellowCount(String openid);
     @Insert("INSERT INTO user_apply(user_openid,target_openid) VALUES(#{user_openid},#{target_openid})")
     int createUserApply(UserApplyModel userApply);

@@ -16,6 +16,9 @@ public class UserDetailService {
         return userDetail;
     }
 
+    public boolean createUserDetail(UserDetailModel userDetail) {
+        return userDetailMapper.createUserDetail(userDetail)>0;
+    }
     public boolean updateUserDetail(UserDetailModel userDetail) {
         UserDetailModel detail = userDetailMapper.getUserDetailByOpenid(userDetail.getOpenid());
         if (detail == null) {
