@@ -12,7 +12,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JWTInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/api/test/**","/error","/api/login/**","/test/**","/static/**","/api/register/**","/api/carousel/**");
+                .excludePathPatterns("/api/test/**","/error","/api/login/**","/test/**","/static/**","/api/register/**","/api/carousel/**","/open/**");
         registry.addInterceptor(new UserDetailInterceptor())
                 .addPathPatterns("/api/product","/api/product/search","/api/product/publish");
     }
