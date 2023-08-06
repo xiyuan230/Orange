@@ -13,7 +13,7 @@ public interface UserMapper {
     UserModel getUserByOpenid(String openid);
     @Update("update users set avatar = #{avatar} where openid = #{openid}")
     int updateUserAvatar(UserModel user);
-    @Update("update users set nick_name = #{nick_name},gender = #{gender},phone = #{phone},description = #{description} where openid = #{openid}")
+    @Update("update users set nick_name = #{nick_name},gender = #{gender},phone = #{phone},description = #{description},status = #{status} where openid = #{openid}")
     int updateUser(UserModel user);
     @Insert("insert into users(openid) values(#{openid})")
     int createUser(String openid);

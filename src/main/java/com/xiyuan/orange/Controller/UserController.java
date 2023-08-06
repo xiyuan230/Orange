@@ -1,6 +1,7 @@
 package com.xiyuan.orange.Controller;
 
 import com.xiyuan.orange.Common.R;
+import com.xiyuan.orange.Model.LoginFromModel;
 import com.xiyuan.orange.Model.UserModel;
 import com.xiyuan.orange.Service.UserService;
 import com.xiyuan.orange.Utils.JWTUtils;
@@ -16,13 +17,13 @@ public class UserController {
     @Resource
     UserService userService;
 
-    @GetMapping("/login")
-    public R login(@RequestParam("code") String code) {
-        Map<String, Object> result = userService.login(code);
-        if (result.get("token") == null) {
-            return R.error("登录失败");
-        }
-        return R.success(result).setMsg("登录成功");
+    @PostMapping("/login")
+    public R login(@RequestBody LoginFromModel form) {
+        return userService.login(form.getCode());
+    }
+    @PostMapping("/register")
+    public R register(@RequestBody Map<String,String> data) {
+        return userService.register(data.get("code"),data.get("invite_code"));
     }
     @GetMapping("/user")
     public R getUserByOpenid(HttpServletRequest req) {

@@ -22,12 +22,12 @@ public class UserDetailController {
         return R.success(userDetail).setMsg("获取详细信息成功");
     }
 
-    @PutMapping("/user/detail")
+    @PostMapping("/user/detail")
     public R updateUserDetail(HttpServletRequest req, @RequestBody UserDetailModel userDetail) {
         String token = req.getHeader("Authorization");
         String openid = JWTUtils.getOpenid(token);
         userDetail.setOpenid(openid);
-        if (!userDetailService.updateUserDetail(userDetail)) {
+        if (!userDetailService.createUserDetail(userDetail)) {
             return R.error("更新用户详情失败");
         }
         return R.success().setMsg("更新用户详情成功");

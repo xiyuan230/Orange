@@ -20,6 +20,11 @@ public class MomentController {
         List<MomentModel> momentList = momentService.getMomentList(page, size);
         return R.success(momentList).setMsg("获取列表成功");
     }
+    @GetMapping("/moment/search")
+    public R getMomentListBySearch(int page,int size,String query){
+        List<MomentModel> momentList = momentService.getMomentListBySearch(page, size, query);
+        return R.success(momentList).setMsg("获取列表成功");
+    }
     @GetMapping("/moment/{moment_id}")
     public R getMomentByID(@PathVariable int moment_id) {
         MomentModel moment = momentService.getMomentByID(moment_id);

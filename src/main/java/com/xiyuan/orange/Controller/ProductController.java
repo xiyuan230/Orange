@@ -41,6 +41,11 @@ public class ProductController {
         }
         return R.success(productList).setMsg("获取商品列表成功");
     }
+    @GetMapping("/pluralist")
+    public R getProductListByType(@RequestParam("page") int page,@RequestParam("size") int size){
+        List<ProductModel> pluralist = productService.getPluralist(page, size);
+        return R.success(pluralist).setMsg("获取兼职列表成功");
+    }
     @GetMapping("/product/school/{school_id}")
     public R getProductListBySchool(@RequestParam("page") int page, @RequestParam("size") int size, @PathVariable int school_id){
         List<ProductModel> productList = productService.getProductListBySchool(page,size,school_id);
@@ -50,6 +55,11 @@ public class ProductController {
     public R getProductListBySearch(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("query") String query){
         List<ProductModel> productList = productService.getProductListBySearch(page,size,query);
         return R.success(productList).setMsg("获取商品列表成功");
+    }
+    @GetMapping("/pluralist/search")
+    public R getPluralistBySearch(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("query") String query){
+        List<ProductModel> productList = productService.getPluralistBySearch(page,size,query);
+        return R.success(productList).setMsg("获取兼职列表成功");
     }
     @GetMapping("/product/{product_id}")
     public R getProductByProductID(@PathVariable int product_id) {
@@ -68,7 +78,13 @@ public class ProductController {
         List<ProductModel> productListByOpenid = productService.getProductListByOpenid(openid);
         return R.success(productListByOpenid).setMsg("获取商品列表成功");
     }
-
+    @GetMapping("/pluralist/publish")
+    public R getPluralistByOpenid(HttpServletRequest req) {
+        String authorization = req.getHeader("Authorization");
+        String openid = JWTUtils.getOpenid(authorization);
+        List<ProductModel> productListByOpenid = productService.getPluralistByOpenid(openid);
+        return R.success(productListByOpenid).setMsg("获取商品列表成功");
+    }
     @PutMapping("/product/publish")
     public R updateProductStatus(@RequestBody ProductModel product,HttpServletRequest req) {
         String authorization = req.getHeader("Authorization");

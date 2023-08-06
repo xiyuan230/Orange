@@ -15,5 +15,6 @@ public class UserModel {
     private String avatar;
     private String description;
     private int role;
+    private int status;
     private LocalDateTime regist_time;
 }

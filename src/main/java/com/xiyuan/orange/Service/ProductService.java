@@ -40,6 +40,14 @@ public class ProductService {
         }
         return productList;
     }
+    public List<ProductModel> getPluralist(int page,int size) {
+        List<ProductModel> productList = productMapper.getPluralist((page - 1) * size, size);
+        for (ProductModel item : productList) {
+            List<ProductImageModel> productImagesByProductID = productImageMapper.getProductImagesByProductID(item.getProduct_id());
+            item.setImage_list(productImagesByProductID);
+        }
+        return productList;
+    }
     public List<ProductModel> getProductListByType(int page,int size,int type) {
         List<ProductModel> productList = productMapper.getProductListByType((page - 1) * size, size,type);
         for (ProductModel item : productList) {
@@ -64,6 +72,14 @@ public class ProductService {
         }
         return productList;
     }
+    public List<ProductModel> getPluralistBySearch(int page,int size,String query) {
+        List<ProductModel> productList = productMapper.getPluralistBySearch((page - 1) * size, size,query);
+        for (ProductModel item : productList) {
+            List<ProductImageModel> productImagesByProductID = productImageMapper.getProductImagesByProductID(item.getProduct_id());
+            item.setImage_list(productImagesByProductID);
+        }
+        return productList;
+    }
     public ProductModel getProductByProductID(int product_id) {
         ProductModel product = productMapper.getProductByProductID(product_id);
         List<ProductImageModel> productImagesList = productImageMapper.getProductImagesByProductID(product_id);
@@ -79,7 +95,14 @@ public class ProductService {
         }
         return productList;
     }
-
+    public List<ProductModel> getPluralistByOpenid(String openid) {
+        List<ProductModel> productList = productMapper.getPluralistByOpenid(openid);
+        for (ProductModel item : productList) {
+            List<ProductImageModel> productImagesByProductID = productImageMapper.getProductImagesByProductID(item.getProduct_id());
+            item.setImage_list(productImagesByProductID);
+        }
+        return productList;
+    }
     public List<Map<Integer,String>> getProductTypeList() {
         List<Map<Integer, String>> productTypeList = productTypeMapper.getProductTypeList();
         return productTypeList;
